@@ -1,0 +1,26 @@
+name: Automated QA with Playwright
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install Dependencies
+      run: npm install playwright
+
+    - name: Run Playwright QA - 22f3001117@ds.study.iitm.ac.in
+      run: node scrape_tables.js
